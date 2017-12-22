@@ -31,14 +31,32 @@ public class CSVutilities
 			}
 		
 	}
-	public List<String> getColoumData()
+	public List<String> getColoumHeaders()
 	{
 		ArrayList<String> ColData = new ArrayList<>();
+		for(int i = 0; i < numcols; i++)
+		{
+			ColData.add(CSVData.get(i));
+		}
+		return ColData;
 		
 	}
 	public List<String> getDataString(int col)
 	{
-		
+		ArrayList<String> data = new ArrayList<>();
+		for(int i = col; i < this.CSVData.size(); i = i + numcols)
+		{
+			String data1 = CSVdata.get(i);
+			if(!(data1.equals("")))
+			{
+				data.add(CSVData.get(i));
+			}
+			else
+			{
+				data.add("");
+			}
+		}
+		return data; 
 	}
 	public List<Integer> getDataInt(int col)
 	{
@@ -46,6 +64,19 @@ public class CSVutilities
 	}
 	public List<Double> getDataDouble(int col)
 	{
-		
+		ArrayList<Double> list = new ArrayList<Double>();
+		for(int i = col; i < this.CSVData.size(); i = i + numcols)
+		{
+			String data =(CSVData.get(i));
+			if(!(data.equals("")))
+			{
+				list.add(Double.parseDouble(data));
+			}
+			else
+			{
+				list.add(null);
+			}
+		}
+		return list;
 	}
 }
